@@ -54,21 +54,25 @@ const Buttons = () => {
     }
 
     useEffect(() => {
-        if (attempts === 0) {
-            setMsg(<p className="gameOver">Game Over! You lost </p>);
+        if (attempts === 0 && input === randomNumber) {
+            setMsg(<p className="succes">Congratulations! You won</p>);
             setShowButton(true);
         }
-    }, [attempts])
+        else if (attempts === 0) {
+            setMsg(<p className="gameOver">Game Over ! You lost</p>);
+            setShowButton(true);
+        }
+    }, [attempts, input])
 
     return (
         <form className="form">
             <h1>Number Guessing Game</h1>
             <label>Enter a number: </label>
-            <input disabled={previousGuesses[previousGuesses.length - 1] === input} type="number" value={input} onChange={inputHandler}></input>
+            <input disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} type="number" value={input} onChange={inputHandler}></input>
             <br />
-            <button disabled={previousGuesses[previousGuesses.length - 1] === input} className="submit" onClick={submitHandler}>Submit</button>
-            <button disabled={previousGuesses[previousGuesses.length - 1] === input} className="clear" onClick={clearHandler}>Clear</button>
-            <button className="reset" onClick={resetHandler}>Reset</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="submit" onClick={submitHandler}>Submit</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="clear" onClick={clearHandler}>Clear</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber || attempts === 0} className="reset" onClick={resetHandler}>Reset</button>
             <p>Remaining attempts: {attempts}</p>
             <p>Previous Guesses: {previousGuesses.join(", ")}</p>
             {msg}
