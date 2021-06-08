@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const randomNumber = Math.floor(Math.random() * 100) + 1;
+console.log(randomNumber);
 
 const Buttons = () => {
 
@@ -9,7 +10,6 @@ const Buttons = () => {
     const [msg, setMsg] = useState("");
     const [previousGuesses, setPreviousGuesses] = useState([]);
     const [showButton, setShowButton] = useState(false);
-
 
     const succes = <p className="succes">Congratulations! You won</p>
     const low = <p className="low"> Your number is too low!</p>
@@ -24,6 +24,8 @@ const Buttons = () => {
         e.preventDefault();
         if (input < 1 || input > 100 || attempts === 0) return;
         if (input === randomNumber) {
+            setPreviousGuesses([...previousGuesses, input]);
+            setAttempts((prevCount) => prevCount - 1);
             setShowButton(true);
             setMsg(succes);
         }
@@ -62,10 +64,10 @@ const Buttons = () => {
         <form className="form">
             <h1>Number Guessing Game</h1>
             <label>Enter a number: </label>
-            <input type="number" value={input} onChange={inputHandler}></input>
+            <input disabled={previousGuesses[previousGuesses.length - 1] === input} type="number" value={input} onChange={inputHandler}></input>
             <br />
-            <button className="submit" onClick={submitHandler}>Submit</button>
-            <button className="clear" onClick={clearHandler}>Clear</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === input} className="submit" onClick={submitHandler}>Submit</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === input} className="clear" onClick={clearHandler}>Clear</button>
             <button className="reset" onClick={resetHandler}>Reset</button>
             <p>Remaining attempts: {attempts}</p>
             <p>Previous Guesses: {previousGuesses.join(", ")}</p>
