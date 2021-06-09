@@ -16,10 +16,6 @@ const Buttons = () => {
     const high = <p className="high">Your number is too high!</p>
 
 
-    function inputHandler(e) {
-        setInput(parseInt(e.target.value));
-    }
-
     function submitHandler(e) {
         e.preventDefault();
         if (input < 1 || input > 100 || attempts === 0) return;
@@ -68,11 +64,11 @@ const Buttons = () => {
         <form className="form">
             <h1>Number Guessing Game</h1>
             <label>Enter a number: </label>
-            <input disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} type="number" value={input} onChange={inputHandler}></input>
+            <input disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} type="number" value={input} onChange={e => setInput(parseInt(e.target.value) || Number)}></input>
             <br />
             <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="submit" onClick={submitHandler}>Submit</button>
             <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="clear" onClick={clearHandler}>Clear</button>
-            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber || attempts === 0} className="reset" onClick={resetHandler}>Reset</button>
+            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="reset" onClick={resetHandler}>Reset</button>
             <p>Remaining attempts: {attempts}</p>
             <p>Previous Guesses: {previousGuesses.join(", ")}</p>
             {msg}
