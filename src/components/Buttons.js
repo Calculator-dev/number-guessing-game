@@ -14,11 +14,23 @@ const Buttons = () => {
     const succes = <p className="succes">Congratulations! You won</p>
     const low = <p className="low"> Your number is too low!</p>
     const high = <p className="high">Your number is too high!</p>
+    const belowZero = <p className="low">Your number is less than 1, please enter a number between 1 and 100</p>
+    const aboveHundred = <p className="low">Your number is above 100, please enter a number between 1 and 100</p>
 
 
     function submitHandler(e) {
         e.preventDefault();
-        if (input < 1 || input > 100 || attempts === 0) return;
+        if (input < 1) {
+            setMsg(belowZero);
+            setInput("");
+            return;
+        }
+        else if (input > 100) {
+            setMsg(aboveHundred);
+            setInput("");
+            return;
+        }
+
         if (input === randomNumber) {
             setPreviousGuesses([...previousGuesses, input]);
             setAttempts((prevCount) => prevCount - 1);
@@ -53,6 +65,7 @@ const Buttons = () => {
         if (attempts === 0 && input === randomNumber) {
             setMsg(<p className="succes">Congratulations! You won</p>);
             setShowButton(true);
+
         }
         else if (attempts === 0) {
             setMsg(<p className="gameOver">Game Over ! You lost</p>);
@@ -62,8 +75,7 @@ const Buttons = () => {
 
     return (
         <form className="form">
-            <h1>Number Guessing Game</h1>
-            <label>Enter a number: </label>
+            <h1>Enter a number between 1 and 100:</h1>
             <input disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} type="number" value={input} onChange={e => setInput(parseInt(e.target.value) || Number)}></input>
             <br />
             <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="submit" onClick={submitHandler}>Submit</button>
