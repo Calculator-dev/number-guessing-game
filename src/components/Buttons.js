@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const randomNumber = Math.floor(Math.random() * 100) + 1;
 console.log(randomNumber);
@@ -17,6 +17,7 @@ const Buttons = () => {
     const belowZero = <p className="low">Your number is less than 1, please enter a number between 1 and 100</p>
     const aboveHundred = <p className="low">Your number is above 100, please enter a number between 1 and 100</p>
 
+    
 
     function submitHandler(e) {
         e.preventDefault();
@@ -65,7 +66,6 @@ const Buttons = () => {
         if (attempts === 0 && input === randomNumber) {
             setMsg(<p className="succes">Congratulations! You won</p>);
             setShowButton(true);
-
         }
         else if (attempts === 0) {
             setMsg(<p className="gameOver">Game Over ! You lost</p>);
@@ -78,7 +78,7 @@ const Buttons = () => {
             <h1>Enter a number between 1 and 100:</h1>
             <input disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} type="number" value={input} onChange={e => setInput(parseInt(e.target.value) || Number)}></input>
             <br />
-            <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="submit" onClick={submitHandler}>Submit</button>
+            <button disabled={attempts === 0} className="submit" onClick={submitHandler}>Submit</button>
             <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="clear" onClick={clearHandler}>Clear</button>
             <button disabled={previousGuesses[previousGuesses.length - 1] === randomNumber} className="reset" onClick={resetHandler}>Reset</button>
             <p>Remaining attempts: {attempts}</p>
