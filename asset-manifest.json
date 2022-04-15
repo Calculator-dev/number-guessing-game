@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/number-guessing-game/static/css/main.70dc81ec.chunk.css",
+    "main.js": "/number-guessing-game/static/js/main.4c3dc208.chunk.js",
+    "main.js.map": "/number-guessing-game/static/js/main.4c3dc208.chunk.js.map",
+    "runtime-main.js": "/number-guessing-game/static/js/runtime-main.7ac36c8b.js",
+    "runtime-main.js.map": "/number-guessing-game/static/js/runtime-main.7ac36c8b.js.map",
+    "static/js/2.5b38cbd1.chunk.js": "/number-guessing-game/static/js/2.5b38cbd1.chunk.js",
+    "static/js/2.5b38cbd1.chunk.js.map": "/number-guessing-game/static/js/2.5b38cbd1.chunk.js.map",
+    "index.html": "/number-guessing-game/index.html",
+    "static/css/main.70dc81ec.chunk.css.map": "/number-guessing-game/static/css/main.70dc81ec.chunk.css.map",
+    "static/js/2.5b38cbd1.chunk.js.LICENSE.txt": "/number-guessing-game/static/js/2.5b38cbd1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ac36c8b.js",
+    "static/js/2.5b38cbd1.chunk.js",
+    "static/css/main.70dc81ec.chunk.css",
+    "static/js/main.4c3dc208.chunk.js"
+  ]
+}
